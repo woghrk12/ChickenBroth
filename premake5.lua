@@ -19,6 +19,9 @@ project "ChickenBroth"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "cbpch.h"
+	pchsource "ChickenBroth/src/cbpch.cpp"
+	
 	files
 	{
 		"%{prj.name}/src/**.h",

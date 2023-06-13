@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-#include <functional>
-
+#include "cbpch.h"
 #include "ChickenBroth/Core.h"
 
 namespace ChickenBroth 
