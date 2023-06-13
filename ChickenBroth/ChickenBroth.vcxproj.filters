@@ -4,6 +4,9 @@
     <Filter Include="ChickenBroth">
       <UniqueIdentifier>{9934332E-8597-C2D2-2E1D-FB881A5F8E55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ChickenBroth\Events">
+      <UniqueIdentifier>{5D9ADE34-C9FB-BB42-5269-02F5BEC9F201}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ChickenBroth.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\ChickenBroth\EntryPoint.h">
       <Filter>ChickenBroth</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Events\ApplicationEvent.h">
+      <Filter>ChickenBroth\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Events\Event.h">
+      <Filter>ChickenBroth\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Events\KeyEvent.h">
+      <Filter>ChickenBroth\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Events\MouseEvent.h">
+      <Filter>ChickenBroth\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\ChickenBroth\Log.h">
       <Filter>ChickenBroth</Filter>

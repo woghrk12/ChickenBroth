@@ -9,3 +9,5 @@
 #else
 	#error ChickenBroth only supports Windows!
 #endif // CB_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
