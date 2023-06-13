@@ -1,0 +1,3 @@
+[submodule "ChickenBroth/vendor/spdlog"]
+	path = ChickenBroth/vendor/spdlog
+	url = https://github.com/gabime/spdlog
