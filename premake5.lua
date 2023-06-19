@@ -11,6 +11,14 @@ workspace "ChickenBroth"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "%{prj.name}/vendor/GLFW/include"
+IncludeDir["spdlog"] = "%{prj.name}/vendor/spdlog/include"
+IncludeDir["src"] = "%{prj.name}/src"
+
+include "ChickenBroth/vendor/GLFW"
+
 project "ChickenBroth"
     location "ChickenBroth"
     kind "SharedLib"
@@ -30,8 +38,15 @@ project "ChickenBroth"
 
 	includedirs
 	{
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{IncludeDir.src}",
+		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
