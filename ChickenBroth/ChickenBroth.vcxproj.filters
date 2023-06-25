@@ -37,6 +37,12 @@
     <ClInclude Include="src\ChickenBroth\Events\MouseEvent.h">
       <Filter>ChickenBroth\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Layer.h">
+      <Filter>ChickenBroth</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\LayerStack.h">
+      <Filter>ChickenBroth</Filter>
+    </ClInclude>
     <ClInclude Include="src\ChickenBroth\Log.h">
       <Filter>ChickenBroth</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChickenBroth\Application.cpp">
+      <Filter>ChickenBroth</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Layer.cpp">
+      <Filter>ChickenBroth</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\LayerStack.cpp">
       <Filter>ChickenBroth</Filter>
     </ClCompile>
     <ClCompile Include="src\ChickenBroth\Log.cpp">
