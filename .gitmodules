@@ -1,6 +1,6 @@
-[submodule "ChickenBroth/vendor/spdlog"]
-	path = ChickenBroth/vendor/spdlog
-	url = https://github.com/gabime/spdlog
 [submodule "ChickenBroth/vendor/GLFW"]
 	path = ChickenBroth/vendor/GLFW
 	url = https://github.com/woghrk12/glfw
+[submodule "ChickenBroth/vendor/spdlog"]
+	path = ChickenBroth/vendor/spdlog
+	url = https://github.com/woghrk12/spdlog
