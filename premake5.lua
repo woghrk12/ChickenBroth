@@ -13,11 +13,15 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "%{prj.name}/vendor/GLFW/include"
-IncludeDir["spdlog"] = "%{prj.name}/vendor/spdlog/include"
+
 IncludeDir["src"] = "%{prj.name}/src"
+IncludeDir["GLFW"] = "%{prj.name}/vendor/GLFW/include"
+IncludeDir["GLAD"] = "%{prj.name}/vendor/GLAD/include"
+IncludeDir["spdlog"] = "%{prj.name}/vendor/spdlog/include"
+
 
 include "ChickenBroth/vendor/GLFW"
+include "ChickenBroth/vendor/GLAD"
 
 project "ChickenBroth"
     location "ChickenBroth"
@@ -28,7 +32,7 @@ project "ChickenBroth"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	pchheader "cbpch.h"
-	pchsource "ChickenBroth/src/cbpch.cpp"
+	pchsource "%{prj.name}/src/cbpch.cpp"
 	
 	files
 	{
@@ -40,12 +44,14 @@ project "ChickenBroth"
 	{
 		"%{IncludeDir.src}",
 		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLFW}"
 	}
 
 	links
 	{
 		"GLFW",
+		"GLAD",
 		"opengl32.lib"
 	}
 
@@ -57,7 +63,8 @@ project "ChickenBroth"
 		defines
 		{
 			"CB_PLATFORM_WINDOWS",
-			"CB_BUILD_DLL"
+			"CB_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
