@@ -14,14 +14,15 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 
-IncludeDir["src"] = "%{prj.name}/src"
-IncludeDir["GLFW"] = "%{prj.name}/vendor/GLFW/include"
-IncludeDir["GLAD"] = "%{prj.name}/vendor/GLAD/include"
-IncludeDir["spdlog"] = "%{prj.name}/vendor/spdlog/include"
-
+IncludeDir["src"] = "ChickenBroth/src"
+IncludeDir["spdlog"] = "ChickenBroth/vendor/spdlog/include"
+IncludeDir["GLFW"] = "ChickenBroth/vendor/GLFW/include"
+IncludeDir["GLAD"] = "ChickenBroth/vendor/GLAD/include"
+IncludeDir["ImGui"] = "ChickenBroth/vendor/ImGui"
 
 include "ChickenBroth/vendor/GLFW"
 include "ChickenBroth/vendor/GLAD"
+include "ChickenBroth/vendor/ImGui"
 
 project "ChickenBroth"
     location "ChickenBroth"
@@ -45,13 +46,15 @@ project "ChickenBroth"
 		"%{IncludeDir.src}",
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 

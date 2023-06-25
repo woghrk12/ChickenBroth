@@ -14,7 +14,11 @@ public:
 class Sandbox : public ChickenBroth::Application
 {
 public:
-	Sandbox() { PushLayer(new ExampleLayer()); }
+	Sandbox() 
+	{
+		PushLayer(new ExampleLayer()); 
+		PushOverlay(new ChickenBroth::ImGuiLayer());
+	}
 
 	~Sandbox() {}
 };

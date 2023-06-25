@@ -4,3 +4,6 @@
 [submodule "ChickenBroth/vendor/spdlog"]
 	path = ChickenBroth/vendor/spdlog
 	url = https://github.com/woghrk12/spdlog
+[submodule "ChickenBroth/vendor/imgui"]
+	path = ChickenBroth/vendor/imgui
+	url = https://github.com/woghrk12/imgui
