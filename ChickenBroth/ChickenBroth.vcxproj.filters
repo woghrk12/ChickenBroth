@@ -7,8 +7,14 @@
     <Filter Include="ChickenBroth\Events">
       <UniqueIdentifier>{5D9ADE34-C9FB-BB42-5269-02F5BEC9F201}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ChickenBroth\ImGui">
+      <UniqueIdentifier>{83F86011-6FDC-2167-D83C-1CBAC43F0CE9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\ChickenBroth\Events\MouseEvent.h">
       <Filter>ChickenBroth\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\ChickenBroth\ImGui\ImGuiLayer.h">
+      <Filter>ChickenBroth\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\ChickenBroth\Layer.h">
       <Filter>ChickenBroth</Filter>
     </ClInclude>
@@ -49,16 +58,20 @@
     <ClInclude Include="src\ChickenBroth\Window.h">
       <Filter>ChickenBroth</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\cbpch.h" />
-    <ClInclude Include="src\ChickenBroth\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChickenBroth\Application.cpp">
       <Filter>ChickenBroth</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\ImGui\ImGuiLayer.cpp">
+      <Filter>ChickenBroth\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\ChickenBroth\Layer.cpp">
       <Filter>ChickenBroth</Filter>
@@ -69,11 +82,12 @@
     <ClCompile Include="src\ChickenBroth\Log.cpp">
       <Filter>ChickenBroth</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\cbpch.cpp" />
-    <ClCompile Include="src\ChickenBroth\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>
