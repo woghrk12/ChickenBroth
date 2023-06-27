@@ -5,6 +5,8 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
+
 namespace ChickenBroth
 {
 	Application* Application::s_Instance = nullptr;
