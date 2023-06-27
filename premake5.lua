@@ -18,12 +18,12 @@ IncludeDir["src"] = "ChickenBroth/src"
 IncludeDir["spdlog"] = "ChickenBroth/vendor/spdlog/include"
 IncludeDir["GLFW"] = "ChickenBroth/vendor/GLFW/include"
 IncludeDir["GLAD"] = "ChickenBroth/vendor/GLAD/include"
-IncludeDir["ImGui"] = "ChickenBroth/vendor/ImGui"
+IncludeDir["imgui"] = "ChickenBroth/vendor/imgui"
 IncludeDir["glm"] = "ChickenBroth/vendor/glm"
 
 include "ChickenBroth/vendor/GLFW"
 include "ChickenBroth/vendor/GLAD"
-include "ChickenBroth/vendor/ImGui"
+include "ChickenBroth/vendor/imgui"
 
 project "ChickenBroth"
     location "ChickenBroth"
@@ -51,7 +51,7 @@ project "ChickenBroth"
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}"
 	}
 
@@ -59,7 +59,7 @@ project "ChickenBroth"
 	{
 		"GLFW",
 		"GLAD",
-		"ImGui",
+		"imgui",
 		"opengl32.lib"
 	}
 
