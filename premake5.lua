@@ -19,6 +19,7 @@ IncludeDir["spdlog"] = "ChickenBroth/vendor/spdlog/include"
 IncludeDir["GLFW"] = "ChickenBroth/vendor/GLFW/include"
 IncludeDir["GLAD"] = "ChickenBroth/vendor/GLAD/include"
 IncludeDir["ImGui"] = "ChickenBroth/vendor/ImGui"
+IncludeDir["glm"] = "ChickenBroth/vendor/glm"
 
 include "ChickenBroth/vendor/GLFW"
 include "ChickenBroth/vendor/GLAD"
@@ -39,7 +40,9 @@ project "ChickenBroth"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -48,7 +51,8 @@ project "ChickenBroth"
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -107,8 +111,9 @@ project "Sandbox"
 
 	includedirs
 	{
-		"ChickenBroth/vendor/spdlog/include",
-		"ChickenBroth/src"
+		"%{IncludeDir.src}",
+		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
