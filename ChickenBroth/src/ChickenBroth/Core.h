@@ -10,6 +10,10 @@
 	#error ChickenBroth only supports Windows!
 #endif // CB_PLATFORM_WINDOWS
 
+#ifdef CB_DEBUG
+	#define CB_ENABLE_ASSERTS
+#endif
+
 #ifdef CB_ENABLE_ASSERTS
 	#define CB_ASSERT(x, ...) { if(!(x)) { CB_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define CB_CORE_ASSERT(x, ...) { if(!(x)) { CB_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
