@@ -15,6 +15,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 
 IncludeDir["src"] = "ChickenBroth/src"
+IncludeDir["vendor"] = "ChickenBroth/vendor"
 IncludeDir["spdlog"] = "ChickenBroth/vendor/spdlog/include"
 IncludeDir["GLFW"] = "ChickenBroth/vendor/GLFW/include"
 IncludeDir["GLAD"] = "ChickenBroth/vendor/GLAD/include"
@@ -112,6 +113,7 @@ project "Sandbox"
 	includedirs
 	{
 		"%{IncludeDir.src}",
+		"%{IncludeDir.vendor}",
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.glm}"
 	}

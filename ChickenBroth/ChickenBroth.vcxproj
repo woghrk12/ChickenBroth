@@ -168,7 +168,6 @@
     <ClInclude Include="src\ChickenBroth\Log.h" />
     <ClInclude Include="src\ChickenBroth\MouseButtonCodes.h" />
     <ClInclude Include="src\ChickenBroth\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\cbpch.h" />
@@ -591,11 +590,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChickenBroth\Application.cpp" />
+    <ClCompile Include="src\ChickenBroth\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ChickenBroth\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\ChickenBroth\Layer.cpp" />
     <ClCompile Include="src\ChickenBroth\LayerStack.cpp" />
     <ClCompile Include="src\ChickenBroth\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\cbpch.cpp">

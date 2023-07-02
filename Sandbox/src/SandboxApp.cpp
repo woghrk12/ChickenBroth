@@ -1,5 +1,7 @@
 #include <ChickenBroth.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public ChickenBroth::Layer
 {
 public:
@@ -7,6 +9,13 @@ public:
 		: Layer("Example") {}
 
 	void OnUpdate() override { if (ChickenBroth::Input::IsKeyPressed(CB_KEY_TAB)) { CB_TRACE("Tab key is pressed (poll)!"); }; }
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World!");
+		ImGui::End();
+	}
 
 	void OnEvent(ChickenBroth::Event& event) override 
 	{
@@ -24,8 +33,7 @@ class Sandbox : public ChickenBroth::Application
 public:
 	Sandbox() 
 	{
-		PushLayer(new ExampleLayer()); 
-		PushOverlay(new ChickenBroth::ImGuiLayer());
+		PushLayer(new ExampleLayer()); ;
 	}
 
 	~Sandbox() {}
