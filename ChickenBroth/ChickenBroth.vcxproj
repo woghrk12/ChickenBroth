@@ -158,8 +158,18 @@
     <ClInclude Include="src\ChickenBroth\LayerStack.h" />
     <ClInclude Include="src\ChickenBroth\Log.h" />
     <ClInclude Include="src\ChickenBroth\MouseButtonCodes.h" />
+    <ClInclude Include="src\ChickenBroth\Renderer\Buffer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\ChickenBroth\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\ChickenBroth\Renderer\Renderer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Renderer\Shader.h" />
     <ClInclude Include="src\ChickenBroth\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -588,6 +598,16 @@
     <ClCompile Include="src\ChickenBroth\Layer.cpp" />
     <ClCompile Include="src\ChickenBroth\LayerStack.cpp" />
     <ClCompile Include="src\ChickenBroth\Log.cpp" />
+    <ClCompile Include="src\ChickenBroth\Renderer\Buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\Renderer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
