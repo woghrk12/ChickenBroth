@@ -1,14 +1,18 @@
 #pragma once
 
 #ifdef CB_PLATFORM_WINDOWS
-	#ifdef CB_BUILD_DLL
-		#define CHICKEN_API __declspec(dllexport)
+	#if CB_DYNAMIC_LINK
+		#ifdef CB_BUILD_DLL
+			#define CHICKEN_API __declspec(dllexport)
+		#else
+			#define CHICKEN_API __declspec(dllimport)
+		#endif
 	#else
-		#define CHICKEN_API __declspec(dllimport)
+		#define CHICKEN_API
 	#endif
 #else
 	#error ChickenBroth only supports Windows!
-#endif // CB_PLATFORM_WINDOWS
+#endif 
 
 #ifdef CB_DEBUG
 	#define CB_ENABLE_ASSERTS
