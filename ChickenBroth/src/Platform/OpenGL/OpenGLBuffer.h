@@ -15,7 +15,7 @@ namespace ChickenBroth
 		virtual void Unbind() const;
 
 	private:
-		unsigned int m_RendererID;
+		uint32_t m_RendererID;
 	};
 
 	class OpenGLIndexBuffer : public IndexBuffer
@@ -28,10 +28,10 @@ namespace ChickenBroth
 		virtual void Bind() const;
 		virtual void Unbind() const;
 
-		virtual unsigned int GetCount() const { return m_Count; }
+		virtual uint32_t GetCount() const { return m_Count; }
 
 	private:
-		unsigned int m_RendererID;
-		unsigned int m_Count;
+		uint32_t m_RendererID;
+		uint32_t m_Count;
 	};
 }
