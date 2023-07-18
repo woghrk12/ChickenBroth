@@ -6,7 +6,7 @@
 
 namespace ChickenBroth
 {
-	VertexBuffer* VertexBuffer::Create(float* vertices, unsigned int size)
+	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -28,7 +28,7 @@ namespace ChickenBroth
 
 	}
 
-	IndexBuffer* IndexBuffer::Create(unsigned int* indices, unsigned int size)
+	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{

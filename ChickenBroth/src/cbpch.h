@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <stdint.h>
+
 #include "ChickenBroth/Log.h"
 
 #ifdef  CB_PLATFORM_WINDOWS
