@@ -10,11 +10,11 @@ namespace ChickenBroth
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
 			return nullptr;
 				
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexBuffer(vertices, size);
 
 		default:
@@ -27,11 +27,11 @@ namespace ChickenBroth
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
 			return nullptr;
 
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLIndexBuffer(indices, size);
 
 		default:
