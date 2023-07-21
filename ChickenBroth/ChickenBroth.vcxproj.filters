@@ -1376,6 +1376,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\ChickenBroth\Renderer\RendererAPI.h" />
     <ClInclude Include="src\ChickenBroth\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\ChickenBroth\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChickenBroth\Application.cpp">
@@ -1425,5 +1426,6 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\ChickenBroth\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\ChickenBroth\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\ChickenBroth\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
