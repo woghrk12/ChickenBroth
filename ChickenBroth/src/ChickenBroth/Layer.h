@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ChickenBroth/Core.h"
+#include "ChickenBroth/Core/Timestep.h"
 #include "ChickenBroth/Events/Event.h"
 
 namespace ChickenBroth
@@ -13,7 +14,7 @@ namespace ChickenBroth
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {};
 		virtual void OnEvent(Event& event) {}
 

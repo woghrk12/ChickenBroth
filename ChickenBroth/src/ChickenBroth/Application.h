@@ -1,19 +1,20 @@
 #pragma once
 
 #include "Core.h"
+#include "Core/Timestep.h"
+
+#include "Window.h"
+
 #include "LayerStack.h"
+
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
-#include "Window.h"
+
 #include "ImGui/ImGuiLayer.h"
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/OrthographicCamera.h"
 
 namespace ChickenBroth
 {
-	class CHICKEN_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -32,21 +33,12 @@ namespace ChickenBroth
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
-		
 		ImGuiLayer* m_ImGuiLayer;
-
 		bool m_Running = true;
-
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
+		float m_LastFrameTime = 0.0f;
 
 	private:
 		static Application* s_Instance;

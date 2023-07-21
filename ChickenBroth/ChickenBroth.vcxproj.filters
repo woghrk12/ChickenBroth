@@ -1427,5 +1427,6 @@
     <ClCompile Include="src\ChickenBroth\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\ChickenBroth\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\ChickenBroth\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\ChickenBroth\Core\Timestep.h" />
   </ItemGroup>
 </Project>

@@ -593,6 +593,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChickenBroth\Application.cpp" />
+    <ClCompile Include="src\ChickenBroth\Core\Timestep.h" />
     <ClCompile Include="src\ChickenBroth\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ChickenBroth\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\ChickenBroth\Layer.cpp" />
