@@ -47,7 +47,7 @@ public:
 			}
 		)";
 
-		m_TriangleShader.reset(new ChickenBroth::Shader(triangleShaderVertexSrc, triangleShaderFragmentSrc));
+		m_TriangleShader.reset(ChickenBroth::Shader::Create(triangleShaderVertexSrc, triangleShaderFragmentSrc));
 
 		// Triangle Vertex Array
 		m_TriangleVA.reset(ChickenBroth::VertexArray::Create());
@@ -110,7 +110,7 @@ public:
 			}
 		)";
 
-		m_SquareShader.reset(new ChickenBroth::Shader(squareShaderVertexSrc, squareShaderFragmentSrc));
+		m_SquareShader.reset(ChickenBroth::Shader::Create(squareShaderVertexSrc, squareShaderFragmentSrc));
 
 		// Square Vertex Array
 		m_SquareVA.reset(ChickenBroth::VertexArray::Create());
