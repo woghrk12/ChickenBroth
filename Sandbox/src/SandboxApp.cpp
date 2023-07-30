@@ -116,10 +116,13 @@ public:
 
 		// Flat Texture Resources
 		m_Texture = ChickenBroth::Texture2D::Create("assets/textures/Checkerboard.png");
-		m_Texture->Bind();
+		m_LogoTexture = ChickenBroth::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		// Flat Texture Shader
 		m_FlatTextureShader.reset(ChickenBroth::Shader::Create(flatTextureShaderVertexSrc, flatTextureShaderFragmentSrc));
+
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->Bind();
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(ChickenBroth::Timestep ts) override 
@@ -157,8 +160,9 @@ public:
 			}
 		}
 		
-		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->Bind();
-		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->UploadUniformInt("u_Texture", 0);
+		m_Texture->Bind();
+		ChickenBroth::Renderer::Submit(m_FlatTextureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_LogoTexture->Bind();
 		ChickenBroth::Renderer::Submit(m_FlatTextureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		ChickenBroth::Renderer::EndScene();
@@ -182,7 +186,7 @@ private:
 
 	glm::vec3 m_FlatColor = glm::vec3(0.2f, 0.3f, 0.8f);
 
-	ChickenBroth::Ref<ChickenBroth::Texture2D> m_Texture;
+	ChickenBroth::Ref<ChickenBroth::Texture2D> m_Texture, m_LogoTexture;
 
 	// Camera variables
 	ChickenBroth::OrthographicCamera m_Camera;
