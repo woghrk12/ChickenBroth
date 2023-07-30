@@ -19,6 +19,7 @@
 
 #include "ChickenBroth/Renderer/Buffer.h"
 #include "ChickenBroth/Renderer/Shader.h"
+#include "ChickenBroth/Renderer/Texture.h"
 #include "ChickenBroth/Renderer/VertexArray.h"
 
 #include "ChickenBroth/Renderer/OrthographicCamera.h"

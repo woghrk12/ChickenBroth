@@ -21,6 +21,7 @@ IncludeDir["GLFW"] = "ChickenBroth/vendor/GLFW/include"
 IncludeDir["GLAD"] = "ChickenBroth/vendor/GLAD/include"
 IncludeDir["imgui"] = "ChickenBroth/vendor/imgui"
 IncludeDir["glm"] = "ChickenBroth/vendor/glm"
+IncludeDir["stb_image"] = "ChickenBroth/vendor/stb_image"
 
 include "ChickenBroth/vendor/GLFW"
 include "ChickenBroth/vendor/GLAD"
@@ -48,6 +49,8 @@ project "ChickenBroth"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -59,7 +62,8 @@ project "ChickenBroth"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

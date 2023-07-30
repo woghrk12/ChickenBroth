@@ -7,6 +7,9 @@
     <Filter Include="src\ChickenBroth">
       <UniqueIdentifier>{10DB5341-FCD3-7293-2506-5818115E529F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ChickenBroth\Core">
+      <UniqueIdentifier>{6869C00F-D4D5-7B0A-9DC9-136809F59D72}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\ChickenBroth\Events">
       <UniqueIdentifier>{F474A206-60AC-EA9D-69B6-4EC1D56C1197}</UniqueIdentifier>
     </Filter>
@@ -46,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ChickenBroth.h">
@@ -56,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="src\ChickenBroth\Core.h">
       <Filter>src\ChickenBroth</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Core\Timestep.h">
+      <Filter>src\ChickenBroth\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ChickenBroth\EntryPoint.h">
       <Filter>src\ChickenBroth</Filter>
@@ -99,10 +108,25 @@
     <ClInclude Include="src\ChickenBroth\Renderer\GraphicsContext.h">
       <Filter>src\ChickenBroth\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Renderer\OrthographicCamera.h">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Renderer\RenderCommand.h">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\ChickenBroth\Renderer\Renderer.h">
       <Filter>src\ChickenBroth\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Renderer\RendererAPI.h">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\ChickenBroth\Renderer\Shader.h">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Renderer\Texture.h">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ChickenBroth\Renderer\VertexArray.h">
       <Filter>src\ChickenBroth\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ChickenBroth\Window.h">
@@ -112,6 +136,18 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -1371,12 +1407,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\ChickenBroth\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\ChickenBroth\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\ChickenBroth\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\ChickenBroth\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ChickenBroth\Application.cpp">
@@ -1400,16 +1433,43 @@
     <ClCompile Include="src\ChickenBroth\Renderer\Buffer.cpp">
       <Filter>src\ChickenBroth\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\OrthographicCamera.cpp">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\RenderCommand.cpp">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ChickenBroth\Renderer\Renderer.cpp">
       <Filter>src\ChickenBroth\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\RendererAPI.cpp">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ChickenBroth\Renderer\Shader.cpp">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\Texture.cpp">
+      <Filter>src\ChickenBroth\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChickenBroth\Renderer\VertexArray.cpp">
       <Filter>src\ChickenBroth\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1421,12 +1481,8 @@
     <ClCompile Include="src\cbpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ChickenBroth\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\ChickenBroth\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\ChickenBroth\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\ChickenBroth\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\ChickenBroth\Core\Timestep.h" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,76 +13,37 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f) 
 	{
-		// Triangle Shader
-		std::string triangleShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-			
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string triangleShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
-
-		m_TriangleShader.reset(ChickenBroth::Shader::Create(triangleShaderVertexSrc, triangleShaderFragmentSrc));
-
-		// Triangle Vertex Array
-		m_TriangleVA.reset(ChickenBroth::VertexArray::Create());
-
-		// Triangle Vertex Buffer
-		float triangleVertices[3 * 7] =
+		// Flat Vertex Resources {x, y, z, x of the corner, y of the corner}
+		float flatVertices[5 * 4] =
 		{
-			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-			0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-			0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f, 0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<ChickenBroth::VertexBuffer> triangleVB;
-		triangleVB.reset(ChickenBroth::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices)));
-		triangleVB->SetLayout({ 
+		// Flat Vertex Buffer
+		ChickenBroth::Ref<ChickenBroth::VertexBuffer> flatVertexBuffer;
+		flatVertexBuffer.reset(ChickenBroth::VertexBuffer::Create(flatVertices, sizeof(flatVertices)));
+		flatVertexBuffer->SetLayout({
 				{ ChickenBroth::ShaderDataType::Float3, "a_Position" },
-				{ ChickenBroth::ShaderDataType::Float4, "a_Color" } 
+				{ ChickenBroth::ShaderDataType::Float2, "a_TexCoord" }
 			});
 
-		m_TriangleVA->AddVertexBuffer(triangleVB);
+		// Flat Index Resources
+		uint32_t flatIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		// Triangle Index Buffer
-		uint32_t triangleIndices[3] = { 0, 1, 2 };
+		// Flat Index Buffer
+		ChickenBroth::Ref<ChickenBroth::IndexBuffer> flatIndexBuffer;
+		flatIndexBuffer.reset(ChickenBroth::IndexBuffer::Create(flatIndices, sizeof(flatIndices) / sizeof(uint32_t)));
 
-		std::shared_ptr<ChickenBroth::IndexBuffer> triangleIB;
-		triangleIB.reset(ChickenBroth::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t)));
+		// Flat vertex array
+		m_FlatVertexArray.reset(ChickenBroth::VertexArray::Create());
+		m_FlatVertexArray->AddVertexBuffer(flatVertexBuffer);
+		m_FlatVertexArray->SetIndexBuffer(flatIndexBuffer);
 
-		m_TriangleVA->SetIndexBuffer(triangleIB);
-
-
-		// Square Shader
-		std::string squareShaderVertexSrc = R"(
+		// Flat Color Shader Resources
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
@@ -100,7 +61,7 @@ public:
 			}
 		)";
 
-		std::string squareShaderFragmentSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
@@ -115,35 +76,50 @@ public:
 			}
 		)";
 
-		m_SquareShader.reset(ChickenBroth::Shader::Create(squareShaderVertexSrc, squareShaderFragmentSrc));
+		// Flat Color Shader
+		m_FlatColorShader.reset(ChickenBroth::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 
-		// Square Vertex Array
-		m_SquareVA.reset(ChickenBroth::VertexArray::Create());
+		// Flat Texture Shader Resources
+		std::string flatTextureShaderVertexSrc = R"(
+			#version 330 core
 
-		// Square Vertex Buffer
-		float squareVertices[3 * 4] =
-		{
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.5f, 0.5f, 0.0f, 
-			-0.5f, 0.5f, 0.0f
-		};
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
 
-		std::shared_ptr<ChickenBroth::VertexBuffer> squareVB;
-		squareVB.reset(ChickenBroth::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-		squareVB->SetLayout({
-				{ ChickenBroth::ShaderDataType::Float3, "a_Position" }
-			});
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
-		m_SquareVA->AddVertexBuffer(squareVB);
+			out vec2 v_TexCoord;
+			
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
 
-		// Square Index Buffer
-		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
 
-		std::shared_ptr<ChickenBroth::IndexBuffer> squareIB;
-		squareIB.reset(ChickenBroth::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		std::string flatTextureShaderFragmentSrc = R"(
+			#version 330 core
 
-		m_SquareVA->SetIndexBuffer(squareIB);
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		// Flat Texture Resources
+		m_Texture = ChickenBroth::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_Texture->Bind();
+
+		// Flat Texture Shader
+		m_FlatTextureShader.reset(ChickenBroth::Shader::Create(flatTextureShaderVertexSrc, flatTextureShaderFragmentSrc));
 	}
 
 	void OnUpdate(ChickenBroth::Timestep ts) override 
@@ -167,8 +143,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_SquareShader)->Bind();
-		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_SquareShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_FlatColor);
 
 		for (int y = 0; y < 20; y++)
 		{
@@ -177,11 +153,13 @@ public:
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
 				
-				ChickenBroth::Renderer::Submit(m_SquareShader, m_SquareVA, transform);
+				ChickenBroth::Renderer::Submit(m_FlatColorShader, m_FlatVertexArray, transform);
 			}
 		}
-
-		ChickenBroth::Renderer::Submit(m_TriangleShader, m_TriangleVA);
+		
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->Bind();
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->UploadUniformInt("u_Texture", 0);
+		ChickenBroth::Renderer::Submit(m_FlatTextureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		ChickenBroth::Renderer::EndScene();
 	}
@@ -189,7 +167,7 @@ public:
 	virtual void OnImGuiRender() override
 	{
 		ImGui::Begin("Setting");
-		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_FlatColor));
 		ImGui::End();
 	}
 
@@ -199,19 +177,19 @@ public:
 	}
 
 private:
-	std::shared_ptr<ChickenBroth::Shader> m_TriangleShader;
-	std::shared_ptr<ChickenBroth::VertexArray> m_TriangleVA;
+	ChickenBroth::Ref<ChickenBroth::Shader> m_FlatColorShader, m_FlatTextureShader;
+	ChickenBroth::Ref<ChickenBroth::VertexArray> m_FlatVertexArray;
 
-	std::shared_ptr<ChickenBroth::Shader> m_SquareShader;
-	std::shared_ptr<ChickenBroth::VertexArray> m_SquareVA;
+	glm::vec3 m_FlatColor = glm::vec3(0.2f, 0.3f, 0.8f);
 
+	ChickenBroth::Ref<ChickenBroth::Texture2D> m_Texture;
+
+	// Camera variables
 	ChickenBroth::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	float m_CameraRotation = 0.0f;
 	float m_CameraMoveSpeed = 5.0f;
 	float m_CameraRotationSpeed = 180.0f;
-
-	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public ChickenBroth::Application
