@@ -77,17 +77,17 @@ public:
 		)";
 
 		// Flat Color Shader
-		m_FlatColorShader.reset(ChickenBroth::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = ChickenBroth::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
 		// Flat Texture Resources
 		m_Texture = ChickenBroth::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = ChickenBroth::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		// Flat Texture Shader
-		m_FlatTextureShader.reset(ChickenBroth::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
-		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->Bind();
-		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(ChickenBroth::Timestep ts) override 
@@ -125,10 +125,12 @@ public:
 			}
 		}
 		
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		ChickenBroth::Renderer::Submit(m_FlatTextureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		ChickenBroth::Renderer::Submit(textureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_LogoTexture->Bind();
-		ChickenBroth::Renderer::Submit(m_FlatTextureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		ChickenBroth::Renderer::Submit(textureShader, m_FlatVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		ChickenBroth::Renderer::EndScene();
 	}
@@ -146,7 +148,9 @@ public:
 	}
 
 private:
-	ChickenBroth::Ref<ChickenBroth::Shader> m_FlatColorShader, m_FlatTextureShader;
+	ChickenBroth::ShaderLibrary m_ShaderLibrary;
+
+	ChickenBroth::Ref<ChickenBroth::Shader> m_FlatColorShader;
 	ChickenBroth::Ref<ChickenBroth::VertexArray> m_FlatVertexArray;
 
 	glm::vec3 m_FlatColor = glm::vec3(0.2f, 0.3f, 0.8f);
