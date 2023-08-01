@@ -79,47 +79,12 @@ public:
 		// Flat Color Shader
 		m_FlatColorShader.reset(ChickenBroth::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 
-		// Flat Texture Shader Resources
-		std::string flatTextureShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-			
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string flatTextureShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TexCoord;
-
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
 		// Flat Texture Resources
 		m_Texture = ChickenBroth::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = ChickenBroth::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		// Flat Texture Shader
-		m_FlatTextureShader.reset(ChickenBroth::Shader::Create(flatTextureShaderVertexSrc, flatTextureShaderFragmentSrc));
+		m_FlatTextureShader.reset(ChickenBroth::Shader::Create("assets/shaders/Texture.glsl"));
 
 		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->Bind();
 		std::dynamic_pointer_cast<ChickenBroth::OpenGLShader>(m_FlatTextureShader)->UploadUniformInt("u_Texture", 0);
